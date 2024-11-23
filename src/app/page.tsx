@@ -1,9 +1,29 @@
 import Image from "next/image";
+import Button from "@mui/material/Button";
+
 import styles from "./page.module.css";
+import { data } from "../data";
+const people = Object.entries(data).filter(([key]) => key.includes("people"));
 
 export default function Home() {
   return (
     <div className={styles.page}>
+      <Button variant="contained" color="primary">
+        Click me too
+      </Button>
+      {people.map(([key, value]) => (
+        <div key={key}>
+          {key} {value.name}
+          <Image
+            className={styles.characters}
+            width={200}
+            height={300}
+            src={`/characters/${key.slice(key.indexOf("/") + 1)}.jpg`}
+            alt={value.name}
+            data-testid={key.slice(key.indexOf("/"))}
+          />
+        </div>
+      ))}
       <main className={styles.main}>
         <Image
           className={styles.logo}
@@ -13,12 +33,6 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
         <div className={styles.ctas}>
           <a
