@@ -32,7 +32,7 @@ const IntroText = styled.h1`
 `;
 
 const people = Object.entries(data).filter(([key]) => key.includes("people"));
-const reversedPeople = [...people].reverse();
+const peopleReversed = [...people].reverse();
 
 export type Data = typeof data;
 export type People = typeof people;
@@ -43,10 +43,10 @@ export default function Home() {
     <Container>
       <IntroText>Choose your side</IntroText>
       <CarouselContainer bg="black">
-        <Carousel data={people} />
+        <Carousel data={peopleReversed} />
       </CarouselContainer>
       <CarouselContainer bg="white">
-        <Carousel data={reversedPeople} />
+        <Carousel data={people} />
       </CarouselContainer>
     </Container>
   );
